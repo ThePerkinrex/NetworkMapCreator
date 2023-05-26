@@ -7,9 +7,12 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven { url "https://jogamp.org/deployment/maven" }
 }
 
 dependencies {
+    implementation 'com.github.micycle1:processing-core-4:4.2'
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
