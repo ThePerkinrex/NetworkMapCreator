@@ -7,7 +7,9 @@ import org.perc.map.node.SimpleNode;
 import org.perc.map.node.StationNode;
 import org.perc.map.station.SimpleStation;
 import org.perc.map.station.Station;
+import org.perc.render.graphics.Java2DGraphicsFactory;
 import org.perc.render.line.RenderedLine;
+import org.perc.style.Style;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 
@@ -37,13 +39,13 @@ public class Renderer extends PApplet {
     public void setup(){
         surface.setResizable(true);
         surface.setTitle("Netmap creator");
-        pg = createGraphics(100, 100);
+        RenderedLine rl = new RenderedLine(getExampleLine(), this);
+        pg = rl.render(new Java2DGraphicsFactory(this));
     }
     public void draw(){
-        background(255);
+        background(128);
         RenderedLine rl = new RenderedLine(getExampleLine(), this);
-        rl.render(color(0,0,255));
-        image(rl, 50,50);
+        image(pg, 50,50);
 //        background(0);
 //        pg.beginDraw();
 //        pg.background(102);
@@ -54,12 +56,14 @@ public class Renderer extends PApplet {
     }
 
     private Line getExampleLine() {
-        Line blueLine = new Line("blue");
-        Station stationA = new SimpleStation(Coords.ZERO, "A");
-        Station stationB = new SimpleStation(new Coords(20,10), "B");
+        Line blueLine = new Line("blue", new Style(color(0,0,255)));
+        Station stationA = new SimpleStation(Coords.ZERO, "Madrid");
+        Station stationB = new SimpleStation(new Coords(20,10), "Zaragoza");
+        Station stationC = new SimpleStation(new Coords(30,10), "Barcelona");
         blueLine.addLast(new StationNode(Coords.ZERO, stationA));
         blueLine.addLast(new SimpleNode(new Coords(10,0)));
         blueLine.addLast(new StationNode(Coords.ZERO, stationB));
+        blueLine.addLast(new StationNode(Coords.ZERO, stationC));
 //        for(Node n : blueLine) {
 //            System.out.println("Node: " + n);
 //        }

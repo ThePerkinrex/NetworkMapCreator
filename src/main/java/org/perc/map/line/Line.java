@@ -3,6 +3,7 @@ package org.perc.map.line;
 import org.perc.map.node.Node;
 import org.perc.map.node.StationNode;
 import org.perc.map.station.Station;
+import org.perc.style.Style;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -10,10 +11,15 @@ import java.util.stream.Stream;
 public class Line implements Iterable<Node> {
     private List<Node> nodes;
     private String name;
-
-    public Line(String name) {
+    private final Style style;
+    public Line(String name, Style style) {
         this.name = name;
         this.nodes = new ArrayList<>();
+        this.style = style;
+    }
+
+    public Style getStyle() {
+        return style;
     }
 
     public void addBefore(int node, Node n) {
