@@ -1,6 +1,7 @@
 package org.perc.render;
 
 import org.perc.coords.Coords;
+import org.perc.map.Map;
 import org.perc.map.line.Line;
 import org.perc.map.node.Node;
 import org.perc.map.node.SimpleNode;
@@ -44,7 +45,6 @@ public class Renderer extends PApplet {
     }
     public void draw(){
         background(128);
-        RenderedLine rl = new RenderedLine(getExampleLine(), this);
         image(pg, 50,50);
 //        background(0);
 //        pg.beginDraw();
@@ -64,6 +64,9 @@ public class Renderer extends PApplet {
         blueLine.addLast(new SimpleNode(new Coords(10,0)));
         blueLine.addLast(new StationNode(Coords.ZERO, stationB));
         blueLine.addLast(new StationNode(Coords.ZERO, stationC));
+        Map m = new Map();
+        m.getLines().add(blueLine);
+        m.save();
 //        for(Node n : blueLine) {
 //            System.out.println("Node: " + n);
 //        }

@@ -45,6 +45,10 @@ public abstract class Station {
         return coords;
     }
 
+    public Iterable<StationNode> nodes() {
+        return this.nodes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
