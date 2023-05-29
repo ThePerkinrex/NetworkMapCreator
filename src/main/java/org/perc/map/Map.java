@@ -53,9 +53,11 @@ public class Map {
 			return list.iterator();
 		}
 	}
+private static final String XML_VERSION = "alpha1";
 
 	public XML save() {
 		XML res = new XML("NetworkMap");
+		res.setString("version", XML_VERSION);
 		XML lines = new XML("Lines");
 		RefList<Station> stationList = new RefList<>(new LinkedList<>());
 		RefList<Node> nodeList = new RefList<>(new LinkedList<>());
