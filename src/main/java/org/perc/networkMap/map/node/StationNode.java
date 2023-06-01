@@ -1,8 +1,7 @@
-package org.perc.map.node;
+package org.perc.networkMap.map.node;
 
-import org.perc.coords.Coords;
-import org.perc.map.line.Line;
-import org.perc.map.station.Station;
+import org.perc.networkMap.coords.Coords;
+import org.perc.networkMap.map.station.Station;
 
 public class StationNode extends Node {
     private final Coords relativeCoords;

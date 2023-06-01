@@ -1,6 +1,6 @@
-package org.perc.render;
+package org.perc.networkMap.render;
 
-import org.perc.render.graphics.GraphicsFactory;
+import org.perc.networkMap.render.graphics.GraphicsFactory;
 import processing.core.PGraphics;
 
 public interface Renderable {

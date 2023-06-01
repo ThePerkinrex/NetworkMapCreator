@@ -1,4 +1,4 @@
-package org.perc.render.graphics;
+package org.perc.networkMap.render.graphics;
 
 import processing.core.PApplet;
 import processing.core.PConstants;

@@ -1,9 +1,9 @@
-package org.perc.map.station;
+package org.perc.networkMap.map.station;
 
-import org.perc.coords.Coords;
-import org.perc.map.line.Line;
-import org.perc.map.node.Node;
-import org.perc.map.node.StationNode;
+import org.perc.networkMap.coords.Coords;
+import org.perc.networkMap.map.line.Line;
+import org.perc.networkMap.map.node.Node;
+import org.perc.networkMap.map.node.StationNode;
 
 import java.util.ArrayList;
 import java.util.List;

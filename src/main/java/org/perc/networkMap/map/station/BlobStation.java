@@ -1,6 +1,6 @@
-package org.perc.map.station;
+package org.perc.networkMap.map.station;
 
-import org.perc.coords.Coords;
+import org.perc.networkMap.coords.Coords;
 
 public class BlobStation extends Station {
     public BlobStation(Coords coords, String name) {

@@ -1,4 +1,4 @@
-package org.perc.style;
+package org.perc.networkMap.style;
 
 public class Style {
 	private int color;

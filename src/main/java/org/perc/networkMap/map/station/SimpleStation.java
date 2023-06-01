@@ -1,7 +1,7 @@
-package org.perc.map.station;
+package org.perc.networkMap.map.station;
 
-import org.perc.coords.Coords;
-import org.perc.map.node.StationNode;
+import org.perc.networkMap.coords.Coords;
+import org.perc.networkMap.map.node.StationNode;
 
 public class SimpleStation extends Station {
     public SimpleStation(Coords coords, String name) {

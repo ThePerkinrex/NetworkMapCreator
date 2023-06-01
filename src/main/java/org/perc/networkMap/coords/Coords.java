@@ -1,8 +1,11 @@
-package org.perc.coords;
+package org.perc.networkMap.coords;
 
+import org.perc.networkMap.xml.XMLSerializable;
 import processing.data.XML;
 
-public record Coords(int x, int y) {
+import java.text.ParseException;
+
+public record Coords(int x, int y) implements XMLSerializable {
     public static final Coords ZERO = new Coords(0,0);
     public Coords add(Coords other) {
         return new Coords(x + other.x, y + other.y);
@@ -12,8 +15,8 @@ public record Coords(int x, int y) {
         return new Coords(x - other.x, y - other.y);
     }
 
-    public XML save() {
-        XML x = new XML("Coords");
+    public XML save(String name) {
+        XML x = new XML(name);
         x.setInt("x", this.x);
         x.setInt("y", this.y);
         return x;

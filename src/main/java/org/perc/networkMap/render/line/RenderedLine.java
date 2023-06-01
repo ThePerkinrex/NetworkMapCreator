@@ -1,9 +1,9 @@
-package org.perc.render.line;
+package org.perc.networkMap.render.line;
 
-import org.perc.map.line.Line;
-import org.perc.map.station.Station;
-import org.perc.render.graphics.GraphicsFactory;
-import org.perc.render.Renderable;
+import org.perc.networkMap.map.line.Line;
+import org.perc.networkMap.map.station.Station;
+import org.perc.networkMap.render.Renderable;
+import org.perc.networkMap.render.graphics.GraphicsFactory;
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PGraphics;
