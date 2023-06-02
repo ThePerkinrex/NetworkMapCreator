@@ -13,19 +13,19 @@ import java.io.IOException;
 
 public class DevMain {
 	public static void main(String[] args) {
-		Renderer.saveWindowLocation = true;
-		String[] sketchArgs = null;
-		try {
-			Config c = new ConfigLoader().load(new XML(new File("config/config.xml")));
-			System.out.println(c);
-			sketchArgs = new String[1];
-			sketchArgs[0] = String.format("--location=%d,%d", c.windowX, c.windowY);
-		} catch (IOException | ParserConfigurationException | SAXException e) {
-			throw new RuntimeException(e);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		PApplet.main(Renderer.class, sketchArgs);
+//		Renderer.saveWindowLocation = true;
+//		String[] sketchArgs = null;
+//		try {
+//			Config c = new ConfigLoader().load(new XML(new File("config/config.xml")));
+//			System.out.println(c);
+//			sketchArgs = new String[1];
+//			sketchArgs[0] = String.format("--location=%d,%d", c.windowX, c.windowY);
+//		} catch (IOException | ParserConfigurationException | SAXException e) {
+//			throw new RuntimeException(e);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		PApplet.main(Renderer.class);
 //        Line blueLine = new Line("blue");
 //        Station stationA = new SimpleStation(Coords.ZERO, "A");
 //        Station stationB = new SimpleStation(new Coords(20,10), "B");

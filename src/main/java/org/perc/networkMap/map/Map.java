@@ -5,6 +5,7 @@ import org.perc.networkMap.map.node.Node;
 import org.perc.networkMap.map.node.SimpleNode;
 import org.perc.networkMap.map.node.StationNode;
 import org.perc.networkMap.map.station.Station;
+import org.perc.networkMap.xml.XMLLoader;
 import org.perc.networkMap.xml.XMLSerializable;
 import processing.data.XML;
 
@@ -69,12 +70,15 @@ public class Map implements XMLSerializable {
 		for (Line line : this.lines) {
 			XML lineXML = new XML("Line");
 			lineXML.setString("name", line.getName());
+			XML nodes = new XML("Nodes");
 			for (Node n : line) {
 				int ref = nodeList.addOrGetWithIdx(n);
 				XML nodeRef = new XML("NodeRef");
 				nodeRef.setIntContent(ref);
-				lineXML.addChild(nodeRef);
+				nodes.addChild(nodeRef);
 			}
+			lineXML.addChild(nodes);
+			lineXML.addChild(line.getStyle().save());
 			lines.addChild(lineXML);
 		}
 
@@ -120,5 +124,15 @@ public class Map implements XMLSerializable {
 		res.addChild(lines);
 		System.out.println(res.format(4));
 		return res;
+	}
+
+	public static class Loader implements XMLLoader<Map> {
+
+		@Override
+		public Map load(XML xml) throws Exception {
+			String version = xml.getString("version");
+			if (!version.equals(Map.XML_VERSION)) throw new Exception("Invalid map version: " + version);
+			return null;
+		}
 	}
 }
