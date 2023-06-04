@@ -78,7 +78,15 @@ public class Renderer extends PApplet {
         blueLine.addLast(new StationNode(Coords.ZERO, stationC));
         Map m = new Map();
         m.getLines().add(blueLine);
-        m.save();
+        XML map = m.save();
+
+        System.out.println(map.format(4));
+        try {
+            Map m2 = new Map.Loader().load(map);
+            System.out.println(m2.save("yes").format(4));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 //        for(Node n : blueLine) {
 //            System.out.println("Node: " + n);
 //        }

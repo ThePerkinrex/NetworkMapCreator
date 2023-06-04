@@ -22,4 +22,8 @@ public class StationNode extends Node {
     public Coords getCoords() {
         return relativeCoords.add(station.getCoords());
     }
+
+    public Coords getRelativeCoords() {
+        return relativeCoords;
+    }
 }
