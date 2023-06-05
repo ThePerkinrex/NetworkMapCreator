@@ -8,12 +8,14 @@ import org.perc.networkMap.map.node.SimpleNode;
 import org.perc.networkMap.map.node.StationNode;
 import org.perc.networkMap.map.station.SimpleStation;
 import org.perc.networkMap.map.station.Station;
+import org.perc.networkMap.render.graphics.GraphicsFactory;
 import org.perc.networkMap.render.graphics.Java2DGraphicsFactory;
 import org.perc.networkMap.render.line.RenderedLine;
 import org.perc.networkMap.style.Style;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.data.XML;
+import processing.event.MouseEvent;
 
 import java.io.File;
 
@@ -22,6 +24,7 @@ public class Renderer extends PApplet {
 
     private int despX = 0;
     private int despY = 0;
+    private float scale = 1;
 
     public int getDespX() {
         return despX;
@@ -39,16 +42,25 @@ public class Renderer extends PApplet {
         size(600,600);
     }
 
-    PGraphics pg;
+    PGraphics line;
+    PGraphics map;
     public void setup(){
         surface.setResizable(true);
         surface.setTitle("Netmap creator");
-        RenderedLine rl = new RenderedLine(getExampleLine(), this);
-        pg = rl.render(new Java2DGraphicsFactory(this));
+        Line blueLine = getExampleLine();
+        RenderedLine rl = new RenderedLine(blueLine, this);
+        GraphicsFactory gf = new Java2DGraphicsFactory(this);
+        line = rl.render(gf);
+        Map m = new Map();
+        m.getLines().add(blueLine);
+        map = m.render(gf);
     }
     public void draw(){
         background(128);
-        image(pg, 50,50);
+//        image(line, 50, 50);
+        scale(scale);
+        translate(despX, despY);
+        image(map, 0, 0);
 //        background(0);
 //        pg.beginDraw();
 //        pg.background(102);
@@ -56,6 +68,11 @@ public class Renderer extends PApplet {
 //        pg.line(pg.width*0.5f, pg.height*0.5f, mouseX, mouseY);
 //        pg.endDraw();
 //        image(pg, 50, 50);
+    }
+
+    @Override
+    public void mouseWheel(MouseEvent event) {
+        scale -= 0.25 * event.getCount();
     }
 
     @Override
@@ -76,17 +93,7 @@ public class Renderer extends PApplet {
         blueLine.addLast(new SimpleNode(new Coords(10, 0)));
         blueLine.addLast(new StationNode(Coords.ZERO, stationB));
         blueLine.addLast(new StationNode(Coords.ZERO, stationC));
-        Map m = new Map();
-        m.getLines().add(blueLine);
-        XML map = m.save();
 
-        System.out.println(map.format(4));
-        try {
-            Map m2 = new Map.Loader().load(map);
-            System.out.println(m2.save("yes").format(4));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 //        for(Node n : blueLine) {
 //            System.out.println("Node: " + n);
 //        }

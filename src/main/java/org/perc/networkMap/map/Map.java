@@ -8,14 +8,17 @@ import org.perc.networkMap.map.node.SimpleNode;
 import org.perc.networkMap.map.node.StationNode;
 import org.perc.networkMap.map.station.BlobStation;
 import org.perc.networkMap.map.station.Station;
+import org.perc.networkMap.render.Renderable;
+import org.perc.networkMap.render.graphics.GraphicsFactory;
 import org.perc.networkMap.style.Style;
 import org.perc.networkMap.xml.XMLLoader;
 import org.perc.networkMap.xml.XMLSerializable;
+import processing.core.PGraphics;
 import processing.data.XML;
 
 import java.util.*;
 
-public class Map implements XMLSerializable {
+public class Map implements XMLSerializable, Renderable {
 	private List<Line> lines;
 
 	public Map() {
@@ -24,6 +27,29 @@ public class Map implements XMLSerializable {
 
 	public List<Line> getLines() {
 		return lines;
+	}
+
+	@Override
+	public PGraphics render(GraphicsFactory factory) {
+		PGraphics g = factory.createGraphics(100,100);
+		g.beginDraw();
+		for (Line l : lines) {
+			Style s = l.getStyle();
+			// TODO LineStyle
+			g.stroke(s.getColor());
+			Node prevN = null;
+			for(Node n : l) {
+				if(prevN != null) {
+					Coords prev = prevN.getCoords();
+					Coords curr = n.getCoords();
+					g.line(prev.x(), prev.y(), curr.x(), curr.y());
+				}
+				prevN = n;
+			}
+		}
+		g.dispose();
+		g.endDraw();
+		return g;
 	}
 
 	private static class RefList<E> implements Iterable<E> {
